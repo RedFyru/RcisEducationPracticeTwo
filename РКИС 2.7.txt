@@ -1,0 +1,310 @@
+//Задание 1
+using System;
+
+class Student
+{
+    public string Surname = "";
+    public DateTime DateOfBirth;
+    public int NumberOfGroup;
+    public int[] Progress = new int[5];
+}
+class RKIS
+{
+    static void Main()
+    {
+        int studentcount = 0;
+        Student[] students = new Student[5];
+        Random rand = new Random();
+        while (true)
+        {
+            Console.WriteLine("\nВведите число 1, что бы добавить студента");
+            Console.WriteLine("Введите число 2, что бы напечатать студента");
+            Console.WriteLine("Введите число 0, что бы завершить программу");
+            int number = int.Parse(Console.ReadLine()!);
+            switch (number)
+            {
+                case 0:
+                    return;
+                case 1:
+                    if(studentcount == 5)
+                    {
+                        Console.WriteLine("Больше не возможно добавить студентов");
+                        break;
+                    }
+                    Student student = new Student();
+                    Console.Write("Введите фамилию студента: ");
+                    student.Surname = Console.ReadLine()!;
+                    Console.Write("Введите дату рождения студента: ");
+                    student.DateOfBirth = Convert.ToDateTime(Console.ReadLine()!);
+                    Console.Write("Введите номер группы студента: ");
+                    student.NumberOfGroup = int.Parse(Console.ReadLine()!);
+                    for (int i = 0; i < student.Progress.Length; i++)
+                    {
+                        student.Progress[i] = rand.Next(2, 5);
+                    }
+                    students[studentcount] = student;
+                    studentcount++;
+                    break;
+                case 2:
+                    for (int i = 0; i < studentcount; i++)
+                    {
+                        Console.WriteLine("",students[i].Surname);
+                        Console.WriteLine(students[i].DateOfBirth.ToShortDateString());
+                        Console.WriteLine(students[i].NumberOfGroup);
+                        Console.WriteLine(string.Join(", ", students[i].Progress));
+                    }        
+                    break;
+            }
+        }
+    }
+}
+
+//Задание 2
+using System;
+
+class Train
+{
+    public String DestinationName = "";
+    public int NumberOfTrain;
+    public DateTime DepartureTime;
+}
+class RKIS
+{
+    static void Main()
+    {
+        while (true)
+        {
+            Console.WriteLine("Введите один из предложенных номеров поезда что бы вывести информацию о нём:");
+            Console.WriteLine("101\n102\n103\n");
+            Console.WriteLine("Введите 0 что бы завершить программу ");
+            int TrainNumber = int.Parse(Console.ReadLine()!);
+            switch (TrainNumber)
+            {
+                case 0:
+                    Console.WriteLine("\nВы завершили программу");
+                    return;
+                case 101:
+                    Train trains = new Train();
+                    trains.DestinationName = "Новосибирск";
+                    trains.NumberOfTrain = 101;
+                    trains.DepartureTime = new DateTime(2020, 12, 5, 18, 30, 25);
+                    Console.WriteLine($"\nПункт назначения - {trains.DestinationName}");
+                    Console.WriteLine($"Номер поезда - {trains.NumberOfTrain}");
+                    Console.WriteLine($"Время отправления - {trains.DepartureTime.ToShortTimeString()}\n");
+                    break;
+                case 102:
+                    Train trains2 = new Train();
+                    trains2.DestinationName = "Москва";
+                    trains2.NumberOfTrain = 102;
+                    trains2.DepartureTime = new DateTime(2020, 12, 5, 08, 15, 25);
+                        Console.WriteLine($"\nПункт назначения - {trains2.DestinationName}");
+                        Console.WriteLine($"Номер поезда - {trains2.NumberOfTrain}");
+                        Console.WriteLine($"Время отправления - {trains2.DepartureTime.ToShortTimeString()}\n");
+                    break;
+                case 103:
+                    Train trains3 = new Train();
+                    trains3.DestinationName = "Владивосток";
+                    trains3.NumberOfTrain = 103;
+                    trains3.DepartureTime = new DateTime(2020, 12, 5, 22, 50, 25); ;
+                    Console.WriteLine($"\nПункт назначения - {trains3.DestinationName}");
+                    Console.WriteLine($"Номер поезда - {trains3.NumberOfTrain}");
+                    Console.WriteLine($"Время отправления - {trains3.DepartureTime.ToShortTimeString()}\n");
+                    break;
+            }
+        }
+    }
+}
+
+//Задание 3
+using System;
+
+class Numbers
+{
+    public int NumberOne;
+    public int NumberTwo;
+    public Numbers(int num1, int num2)
+    {
+        this.NumberOne = num1;
+        this.NumberTwo = num2;
+    }
+    public void ChangeNumbers(int num1, int num2)
+    {
+        this.NumberOne = num1;
+        this.NumberTwo = num2;
+    }
+    public void Сonclusion()
+    {
+        Console.WriteLine($"\n{this.NumberOne} {this.NumberTwo}");
+    }
+    public int SumOfNumbers()
+    {
+        return this.NumberOne + this.NumberTwo;
+    }
+    public int MaxNumber()
+    {
+        if (this.NumberOne > this.NumberTwo)
+        {
+            return this.NumberOne;
+        }
+        return this.NumberTwo;
+    }
+}
+class RKIS
+{
+    static void Main()
+    {
+        Numbers number = new Numbers(0, 0);
+        while (true)
+        {
+            Console.WriteLine("\nВведите число 0 что бы закончить программу");
+            Console.WriteLine("Введите число 1 что бы измеить числа");
+            Console.WriteLine("Введите число 2 что бы вывести числа");
+            Console.WriteLine("Введите число 3 что бы найти сумму чисел");
+            Console.WriteLine("Введите число 4 что бы найти максимальное число");
+            int a = int.Parse(Console.ReadLine()!);
+            switch (a)
+            {
+                case 0:
+                    Console.WriteLine("\nПрограмма завершена");
+                    return;
+                case 1:
+                    Console.Write("\nВведите Перове число: ");
+                    int digit1 = int.Parse(Console.ReadLine()!);
+                    Console.Write("Введите Второе число: ");
+                    int digit2 = int.Parse(Console.ReadLine()!);
+                    number.ChangeNumbers(digit1, digit2);
+                    break;
+                case 2:
+                    number.Сonclusion();
+                    break;
+                case 3:
+                    Console.WriteLine($"\n{number.SumOfNumbers()}");
+                    break;
+                case 4:
+                    Console.WriteLine($"\n{number.MaxNumber()}");
+                    break;
+            }
+        }
+    }
+}
+
+//Задание 4
+using System;
+
+class counter
+{
+    private int number;
+    public counter()
+    {
+        this.number = 0;
+    }
+    public counter(int n)
+    {
+        this.number = n;
+    }
+    public void Decrease()
+    {
+        this.number--;
+    }
+    public void Increase()
+    {
+        this.number++;
+    }
+    public int Output
+    {
+        get { return number; }
+    }
+}
+class RKIS
+{
+    static void Main()
+    {
+        counter num = new counter();
+        Random rand = new Random();
+        while (true)
+        {
+            Console.WriteLine("\nВведите число 1, что бы счетчик принял произвольное значение");
+            Console.WriteLine("Введите число 2, что бы уменьшить значение счетчика");
+            Console.WriteLine("Введите число 3, что бы увеличить значение счетчика");
+            Console.WriteLine("Введите число 4, что бы вывести значение счетчика");
+            Console.WriteLine("Введите число 0, что бы завершить программу");
+            int number = int.Parse(Console.ReadLine()!);
+            Console.WriteLine();
+            int NumberOfCounter = 0;
+            switch (number)
+            {
+                case 0:
+                    Console.WriteLine("\nВы завершили программу");
+                    return;
+                case 1:
+                    NumberOfCounter = rand.Next();
+                    num = new counter(NumberOfCounter);
+                    break;
+                case 2:
+                    num.Decrease();
+                    break;
+                    case 3:
+                    num.Increase();
+                    break;
+                case 4:
+                    Console.WriteLine(num.Output); 
+                    break;
+            }
+        }
+    }
+}
+
+//Задание 5
+using System;
+
+class Names
+{
+  public String FirstName;
+  public String Surname;
+  public Names()
+  {
+      this.FirstName = "";
+      this.Surname = "";
+  }
+  public Names (String name1, String name2)
+  {
+    this.FirstName = name1;
+    this.Surname = name2;
+  }
+  ~Names()
+  {
+    Console.Write($"{this.FirstName} was deleted");
+    Console.Write($"\n{this.Surname} was deleted");
+  }
+}
+class RKIS
+{
+    static void Main()
+    {
+        Names user = new Names();
+        while (true)
+        {
+            Console.WriteLine("\nВведите число 1, что бы ввести имя и фамилию");
+            Console.WriteLine("Введите число 2, что бы вывести значения");
+            Console.WriteLine("Введите число 0, что бы завершить программу");
+            int number = int.Parse(Console.ReadLine());
+            switch (number)
+            {
+                case 0:
+                    Console.WriteLine("\nВы завершили программу");
+                    return;
+                case 1:
+                    Console.Write("Введите Имя: ");
+                    String name1 = Console.ReadLine();
+                    Console.Write("Введите Фамилию: ");
+                    String name2 = Console.ReadLine();
+                    user = new Names(name1, name2);
+                    break;
+                case 2:
+                    Console.WriteLine(user.FirstName);
+                    Console.Write(user.Surname);
+                    break;   
+            }
+        }
+    }
+}
